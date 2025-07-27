@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #5677a2;
-            --light-gray: #f0f2f5;
-            --text-color: #333;
+            --primary-color: #000000;
+            --secondary-color: #f5f5f7;
+            --text-color: #1d1d1f;
+            --secondary-text-color: #86868b;
             --bg-color: #ffffff;
         }
 
@@ -23,28 +22,28 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
             background-color: var(--bg-color);
             color: var(--text-color);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 980px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 22px;
         }
 
         /* Navigation Bar */
         .navbar {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            padding: 0.5rem 0;
             position: sticky;
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-bottom: 1px solid #ddd;
         }
         .navbar .container {
             display: flex;
@@ -52,113 +51,178 @@
             align-items: center;
         }
         .nav-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
             text-decoration: none;
         }
         .nav-menu {
             list-style: none;
             display: flex;
-            justify-content: center; /* Center menu items */
-            flex-grow: 1; /* Take remaining space */
+            justify-content: center;
+            flex-grow: 1;
         }
         .nav-menu li {
             margin: 0 15px;
         }
         .nav-menu a {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
-            transition: background-color 0.3s;
-            padding: 5px 10px;
-            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
         .nav-menu a:hover, .nav-menu a.active {
-            background-color: var(--accent-color);
+            color: #007aff;
         }
         .nav-toggle {
             display: none;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
         }
 
-        /* Header */
-        header {
+        /* Header & About Section */
+        #home {
+            padding: 6rem 22px;
+            background-color: var(--bg-color);
+        }
+
+        .about-container {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            text-align: center;
-            padding: 6rem 0;
-            background-color: var(--light-gray);
+            gap: 3rem;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            flex-shrink: 0;
         }
 
         .profile-pic {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            margin-bottom: 1rem;
-            object-fit: cover;
-            border: 5px solid var(--bg-color);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        header h1 {
-            font-size: 2.5rem;
+        .about-text {
+            text-align: left;
+        }
+
+        .about-text h1 {
+            font-size: 3rem;
+            font-weight: 600;
             color: var(--primary-color);
+            margin: 0;
+        }
+
+        .about-text .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-text-color);
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p:not(.subtitle) {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: row; /* Changed to row */
+            gap: 2rem;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .about-text {
+            flex: 1; /* Allow text to take available space */
+            min-width: 300px; /* Ensure it doesn't get too small */
+        }
+
+        .education-item {
+            flex-shrink: 0; /* Prevent education item from shrinking */
+            text-align: left; /* Align text to left */
+            padding-left: 2rem; /* Add some padding to separate from about-text */
+            border-left: 1px solid #ddd; /* Add a separator line */
+        }
+
+        .education-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive adjustments for about-content */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column; /* Stack vertically on small screens */
+            }
+            .education-item {
+                padding-left: 0;
+                border-left: none;
+                text-align: center; /* Center text on small screens */
+            }
         }
 
         /* Section Base */
+
+        .grid-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 4rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .grid-section .section {
+            padding: 0;
+            border: none;
+        }
+
+        .grid-section .section h2 {
+            text-align: left;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
         .section {
-            padding: 5rem 20px;
-            border-bottom: 1px solid #eee;
+            padding: 4rem 0;
+            border-bottom: 1px solid #ddd;
         }
         .section:last-child {
             border-bottom: none;
         }
 
-        main .section:nth-of-type(even) {
-            background-color: var(--light-gray);
-        }
-
         .section h2 {
             text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
             margin-bottom: 3rem;
-            font-size: 2.2rem;
             color: var(--primary-color);
         }
         
         /* About Section */
         #about p {
             text-align: center;
-            max-width: 800px;
+            max-width: 720px;
             margin: 0 auto;
             font-size: 1.1rem;
+            line-height: 1.7;
         }
 
         /* Education Section */
         .education-item {
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
         }
         .education-item h3 {
-            color: var(--primary-color);
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 0.25rem;
         }
         .education-item p {
             font-size: 1rem;
-            color: var(--secondary-color);
+            color: var(--secondary-text-color);
         }
 
         /* Certificates Section */
         .certificates-container {
-            max-width: 800px;
-            margin: 0 auto;
             text-align: center;
         }
         .certificate-list {
@@ -171,46 +235,36 @@
             gap: 1rem;
         }
         .certificate-item {
-            background: var(--light-gray);
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            font-size: 1rem;
-            border: 1px solid #e0e0e0;
+            background: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
         }
 
         /* History Section */
         .history-container {
             max-width: 800px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
         }
         .history-year-row {
-            display: flex;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: 120px 1fr;
             gap: 2rem;
+            margin-bottom: 2rem;
         }
         .history-year {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.2rem;
+            font-weight: 600;
             color: var(--primary-color);
-            width: 100px;
-            flex-shrink: 0;
         }
         .history-items-col {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            flex: 1;
-            border-left: 2px solid var(--light-gray);
-            padding-left: 2rem;
+            gap: 1rem;
         }
         .history-item-content h3 {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            font-weight: 500;
-            margin: 0;
+            font-size: 1rem;
+            font-weight: 400;
         }
 
         /* Skills Section */
@@ -222,86 +276,97 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.75rem;
         }
         .skill-item {
-            background: var(--light-gray);
+            background: var(--secondary-color);
             color: var(--text-color);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            font-size: 0.95rem;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease-in-out;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            border: 1px solid #e0e0e0;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         .skill-item:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            background-color: #fff;
+            background-color: #ffffff;
+        }
+
+        /* Certificates Section */
+        .certificates-container {
+            text-align: center;
+        }
+        .certificate-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        .certificate-item {
+            background: var(--secondary-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 0.2s ease-in-out;
+        }
+        .certificate-item:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #ffffff;
         }
 
         /* Projects Section */
-        .project-grid {
-            display: grid;
-            justify-content: center;
-        }
-
         .project-card {
             background: var(--bg-color);
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
             max-width: 800px;
+            margin: 0 auto;
         }
-
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
         }
-
         .project-placeholder {
             width: 100%;
             height: auto;
-            max-height: 400px;
-            object-fit: cover;
         }
-
         .project-info {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            padding: 2rem;
         }
         .project-info h3 {
-            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: 600;
         }
         .project-info p {
-            margin-top: 0.5rem;
-            flex-grow: 1;
+            margin-top: 1rem;
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
         /* Contact Section */
         .social-links {
             text-align: center;
-            padding: 2rem 0;
         }
-
         .social-links a {
-            font-size: 2.5rem;
-            margin: 0 1.5rem;
-            color: var(--secondary-color);
-            transition: color 0.3s, transform 0.3s;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            color: var(--secondary-text-color);
+            transition: color 0.3s;
         }
-
         .social-links a:hover {
-            color: var(--accent-color);
-            transform: scale(1.2);
+            color: #007aff;
         }
 
         /* Footer */
@@ -309,58 +374,27 @@
             text-align: center;
             padding: 2rem 0;
             margin-top: 2rem;
-            background-color: var(--primary-color);
-            color: white;
+            color: var(--secondary-text-color);
+            font-size: 0.8rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                background-color: var(--primary-color);
-            }
-            .nav-menu.active {
-                display: flex;
-            }
-            .nav-menu li {
-                margin: 1rem 0;
-                text-align: center;
             }
             .nav-toggle {
                 display: block;
             }
             header h1 {
-                font-size: 2rem;
-            }
-            .profile-pic {
-                width: 120px;
-                height: 120px;
+                font-size: 2.5rem;
             }
             .section h2 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             .history-year-row {
-                flex-direction: column;
+                grid-template-columns: 1fr;
                 gap: 1rem;
-            }
-            .history-year {
-                width: auto;
-                text-align: center;
-                margin-bottom: 1rem;
-            }
-            .history-item {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            .history-item-month {
-                width: auto;
-                font-weight: normal;
-                color: #777;
             }
         }
     </style>
@@ -369,42 +403,65 @@
 
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="nav-logo">PotateDevel0per</a>
-            <button class="nav-toggle" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
+            <a href="#" class="nav-logo">Jihyuk Lee</a>
             <ul class="nav-menu">
-                <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
-                <li><a href="#history">History</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#history">History</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
-    <div class="container">
-        <header id="home">
-            <img src="images/profileImage.png" alt="Profile Picture" class="profile-pic">
-            <h1>Jihyuk Lee</h1>
-            <p>Undergraduate</p>
-        </header>
-
-        <main>
-            <section id="about" class="section">
-                <h2>About Me</h2>
-                <p>Hello, I'm Jihyuk Lee, a 4th-year student majoring in Computer Science at the AI Software Department of Chosun University.<br>
-I have a deep interest in full-stack web/app development and cloud/big data technologies,<br>
-and I aim to develop a career coaching web service for students who are contemplating their career paths.</p>
-            </section>
-
-            <section id="education" class="section">
-                <h2>Education</h2>
+    <header id="home" class="section">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="images/profileImage.png" alt="Profile Picture" class="profile-pic">
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h1>Jihyuk Lee</h1>
+                    <p class="subtitle">Undergraduate Student</p>
+                    <p>I am a fourth-year student majoring in Computer Science at Chosun University, with a strong passion for full-stack development, cloud computing, and big data. My goal is to create a career coaching service that helps students navigate their future paths.</p>
+                </div>
                 <div class="education-item">
-                    <h3>Chosun University</h3>
-                    <p>Dept. of AI Software (Major in Computer Science) | 2020 - 2026</p>
+                    <h3>Education</h3>
+                    <p>Chosun University, Bachelor of Science in Computer Science | 2020 - 2026</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+            <section id="skills" class="section">
+                <h2>Skills</h2>
+                <div class="skills-container">
+                    <div class="skills-grid">
+                        <div class="skill-item"><i class="fab fa-html5"></i> HTML</div>
+                        <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS</div>
+                        <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+                        <div class="skill-item"><i class="fab fa-java"></i> Java</div>
+                        <div class="skill-item"><i class="fab fa-node-js"></i> Node.js</div>
+                        <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+                        <div class="skill-item">SpringBoot</div>
+                        <div class="skill-item"><i class="fas fa-database"></i> MySQL</div>
+                        <div class="skill-item"><i class="fab fa-docker"></i> Docker</div>
+                        <div class="skill-item"><i class="fab fa-aws"></i> AWS</div>
+                        <div class="skill-item"><i class="fas fa-cloud"></i> GCP</div>
+                        <div class="skill-item"><i class="fas fa-cloud"></i> MCP</div>
+                        <div class="skill-item">Pytorch</div>
+                        <div class="skill-item">Numpy</div>
+                        <div class="skill-item">Pandas</div>
+                        <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
+                        <div class="skill-item"><i class="fab fa-github"></i> Github</div>
+                        <div class="skill-item">n8n</div>
+                        <div class="skill-item">Zapier</div>
+                    </div>
                 </div>
             </section>
 
@@ -419,125 +476,39 @@ and I aim to develop a career coaching web service for students who are contempl
                 </div>
             </section>
 
+
             <section id="history" class="section">
                 <h2>History</h2>
                 <div class="history-container">
                     <div class="history-year-row">
                         <div class="history-year">2025</div>
                         <div class="history-items-col">
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>2025 WFK ICT Volunteers | Daffodil International University, Bangladesh</h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>Industry-Academia Capstone Design [Dungji] Team Leader</h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>Programming Tutor (Coding Clinic Assistant)</h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>Completed [Inflearn] Spring Introduction - by Kim Young-han</h3>
-                                </div>
-                            </div>
+                            <div class="history-item"><div class="history-item-content"><h3>2025 WFK ICT Volunteers | Daffodil International University, Bangladesh</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>Industry-Academia Capstone Design [Dungji] Team Leader</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>Programming Tutor (Coding Clinic Assistant)</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>Completed [Inflearn] Spring Introduction</h3></div></div>
                         </div>
                     </div>
                     <div class="history-year-row">
                         <div class="history-year">2024</div>
                         <div class="history-items-col">
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>Harmonics 35th Regular Performance</h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>Joint Performance of Arts & Culture Division Bands <REAL></h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>2024 WFK ICT Volunteers | Mahendra Secondary School, Nepal</h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>Harmonics Regular Busking</h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>Club Union Promotion & Festival <Byeolha-je></h3>
-                                </div>
-                            </div>
+                            <div class="history-item"><div class="history-item-content"><h3>Harmonics 35th Regular Performance</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>Joint Performance of Arts & Culture Division Bands <REAL></h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>2024 WFK ICT Volunteers | Mahendra Secondary School, Nepal</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>Harmonics Regular Busking</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>Club Union Promotion & Festival <Byeolha-je></h3></div></div>
                         </div>
                     </div>
                     <div class="history-year-row">
                         <div class="history-year">2023</div>
                         <div class="history-items-col">
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>Harmonics 34th Regular Performance</h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>Chosun University Student Council Festival <Bitgoeul Boun-je></h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>Club Union Band Joint Performance <Anjeon-jeil></h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>2023 WFK ICT Volunteers | Union of the Mongol writers, Mongolia</h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>[NHN] Java Study Participation</h3>
-                                </div>
-                            </div>
-                            <div class="history-item">
-                                <div class="history-item-content">
-                                    <h3>C++ Console Game Development Project</h3>
-                                </div>
-                            </div>
+                            <div class="history-item"><div class="history-item-content"><h3>Harmonics 34th Regular Performance</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>Chosun University Student Council Festival</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>Club Union Band Joint Performance</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>2023 WFK ICT Volunteers | Union of the Mongol writers, Mongolia</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>[NHN] Java Study Participation</h3></div></div>
+                            <div class="history-item"><div class="history-item-content"><h3>C++ Console Game Development Project</h3></div></div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="skills" class="section">
-                <h2>Skills</h2>
-                <div class="skills-container">
-                    <div class="skills-grid">
-                        <div class="skill-item"><i class="fab fa-html5"></i> HTML</div>
-                        <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS</div>
-                        <div class="skill-item"><i class="fab fa-js"></i> JS</div>
-                        <div class="skill-item"><i class="fab fa-java"></i> Java</div>
-                        <div class="skill-item"><i class="fab fa-node-js"></i> Node.js</div>
-                        <div class="skill-item"><i class="fab fa-python"></i> Python</div>
-                        <div class="skill-item"><i class="fas fa-leaf"></i> SpringBoot</div>
-                        <div class="skill-item"><i class="fas fa-database"></i> MySQL</div>
-                        <div class="skill-item"><i class="fab fa-docker"></i> Docker</div>
-                        <div class="skill-item"><i class="fab fa-aws"></i> AWS</div>
-                        <div class="skill-item"><i class="fab fa-google"></i> GCP</div>
-                        <div class="skill-item"><i class="fas fa-cloud"></i> MCP</div>
-                        <div class="skill-item"><i class="fas fa-brain"></i> Pytorch</div>
-                        <div class="skill-item"><i class="fas fa-chart-line"></i> Numpy</div>
-                        <div class="skill-item"><i class="fas fa-table"></i> Pandas</div>
-                        <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
-                        <div class="skill-item"><i class="fab fa-github"></i> Github</div>
-                        <div class="skill-item"><i class="fas fa-cogs"></i> n8n</div>
-                        <div class="skill-item"><i class="fas fa-bolt"></i> Zapier</div>
                     </div>
                 </div>
             </section>
@@ -548,10 +519,10 @@ and I aim to develop a career coaching web service for students who are contempl
                     <div class="project-card">
                         <img src="images/project1_wantitnest.png" alt="Project 1 Image" class="project-placeholder">
                         <div class="project-info">
-                            <h3>[Web Community] Want IT Nest</h3>
-                            <p><strong>Planning & Design:</strong> Participated in planning core features, designing the database, and creating UI prototypes to build the project's foundation. Designed the layout and UX for major screens, including the main page, profile, and bulletin boards.<br><br>
-                            <strong>Backend Development:</strong> Implemented CRUD APIs for the project recruitment board based on Node.js. Also, established a stable server environment by configuring a reverse proxy using NginX and implementing SSL/TLS secure communication.<br><br>
-                            <strong>Cloud Infrastructure:</strong> Designed and implemented the entire infrastructure in an AWS cloud environment, including VPC, EC2, and security groups. Enhanced security accessibility by configuring a Bastion Host.</p>
+                            <h3>Want IT Nest - Web Community</h3>
+                            <p><strong>Planning & Design:</strong> Led the planning of core features, database design, and UI prototyping. Designed the layout and UX for key screens, including the main page, user profiles, and community boards.<br><br>
+                            <strong>Backend Development:</strong> Developed CRUD APIs for the project board using Node.js. Set up a reverse proxy with NginX and implemented SSL/TLS for secure communication.<br><br>
+                            <strong>Cloud Infrastructure:</strong> Designed and deployed the entire infrastructure on AWS, including VPC, EC2, and security groups. Configured a Bastion Host to enhance security.</p>
                         </div>
                     </div>
                 </div>
